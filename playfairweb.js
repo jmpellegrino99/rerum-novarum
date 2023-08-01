@@ -1,8 +1,8 @@
 const alphabet = "abcdefghiklmnopqrstuvwxyz"; // Corrected the missing "j"
 
-const encrypt = -1; // Set to 1 for encryption, -1 for decryption
-const key = "death";
-let message = "damwnhdaqaiuxeqaznrz";
+const encrypt = document.getElementById("encrypt");
+const key = document.getElementById("key");
+let message = document.getElementById("message");
 
 // Convert the message to lowercase
 message = message.toLowerCase();
