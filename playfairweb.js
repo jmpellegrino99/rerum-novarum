@@ -1,8 +1,8 @@
 const alphabet = "abcdefghiklmnopqrstuvwxyz"; // Corrected the missing "j"
 
-const encrypt = document.getElementById("encrypt");
-const key = document.getElementById("key");
-let message = document.getElementById("message");
+const encrypt = document.getElementById("encrypt").value;
+const key = document.getElementById("key").value;
+let message = document.getElementById("message").value;
 
 // Convert the message to lowercase
 message = message.toLowerCase();
@@ -91,5 +91,7 @@ for (let i = 0; i < pairList.length; i++) {
     resultPairList.push(swapFirstSecond);
 }
 
-const newMessage = resultPairList.join("")
-console.log(newMessage)
+function finalReturn() {
+const newMessage = resultPairList.join("");
+return(newMessage)
+}

@@ -6,6 +6,7 @@
 <body>
     <h1>Enter Text:</h1>
     <form id="textInputForm">
+        Encrypt/Decrypt: <input type="number" id="encrypt" placeholder="Type 1 for encrypt, -1 for decrypt">
         Key: <input type="text" id="key" placeholder="Type 5-letter key here">
         Message: <input type="text" id="message" placeholder="Type your message here">
         <button type="submit">Submit</button>
@@ -16,16 +17,19 @@
     <script>
         document.getElementById("textInputForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent form submission
-
+            const encryptText = document.getElementById("encrypt").value;
             const keyText = document.getElementById("key").value;
             const messageText = document.getElementById("message").value;
-            displayText(keyText, messageText);
+            displayText(encrypt, keyText, messageText);
         });
 
-        function displayText(keyText, messageText) {
+        function displayText(encrypt, keyText, messageText) {
             const displayTextElement = document.getElementById("displayText");
-            displayTextElement.textContent = keyText + " " + messageText + " wazzup";
+            displayTextElement.textContent = finalReturn()
         }
     </script>
+
+    <script src="playfairweb.js"></script>
 </body>
 </html>
+
