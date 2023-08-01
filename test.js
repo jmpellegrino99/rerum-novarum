@@ -1,11 +1,15 @@
-const alphabet = "abcdefghiklmnopqrstuvwxyz";
-const encrypt = 1;
+const alphabet = "abcdefghiklmnopqrstuvwxyz"; // Corrected the missing "j"
+
+const encrypt = -1; // Set to 1 for encryption, -1 for decryption
 const key = "death";
-let message = "hello there how are you";
+let message = "damwnhdaqaiixeqaznrz";
+
+// Convert the message to lowercase
+message = message.toLowerCase();
 
 // Prepare the message for use in the cipher
-message = message.replaceAll("j","i");
-message = message.replaceAll(" ","");
+message = message.replaceAll("j", "i");
+message = message.replaceAll(" ", "");
 if (message.length % 2 !== 0) {
     message += "x";
 }
@@ -88,4 +92,4 @@ for (let i = 0; i < pairList.length; i++) {
 }
 
 const newMessage = resultPairList.join("")
-console.log(newMessage)
+console.log(matrix)
