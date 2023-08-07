@@ -1,35 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Text Input Form</title>
+    <title>Playfair Cipher</title>
 </head>
 <body>
-    <h1>Enter Text:</h1>
-    <form id="textInputForm">
-        Encrypt/Decrypt: <input type="number" id="encrypt" placeholder="Type 1 for encrypt, -1 for decrypt">
-        Key: <input type="text" id="key" placeholder="Type 5-letter key here">
-        Message: <input type="text" id="message" placeholder="Type your message here">
-        <button type="submit">Submit</button>
-    </form>
 
-    <p id="displayText"></p>
+<h2>Playfair Cipher Encoder/Decoder</h2>
 
-    <script>
-        document.getElementById("textInputForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission
-            const encryptText = document.getElementById("encrypt").value;
-            const keyText = document.getElementById("key").value;
-            const messageText = document.getElementById("message").value;
-            displayText(encrypt, keyText, messageText);
-        });
+<form id="enterValues">
+    <label for="encrypt">Enter 1 for encrypt, -1 for decrypt:</label>
+    <input type="number" id="encrypt" name="encrypt">
+    <br>
+    <label for="key">Enter a 5-letter key:</label>
+    <input type="text" id="key" name="key">
+    <br>
+    <label for="message">Enter a message:</label>
+    <input type="text" id="message" name="message">
+    <br>
+    <input type="submit" value="Submit">
+</form>
 
-        function displayText(encrypt, keyText, messageText) {
-            const displayTextElement = document.getElementById("displayText");
-            displayTextElement.textContent = finalReturn()
+<p id = "outputResult"></p>
+
+<script>
+document.getElementById("enterValues").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    var encrypt = parseInt(document.getElementById("encrypt").value, 10);
+    var key = document.getElementById("key").value;
+    var message = document.getElementById("message").value;
+
+    const alphabet = "abcdefghiklmnopqrstuvwxyz"; 
+
+    // Convert the message to lowercase
+    message = message.toLowerCase();
+
+    // Prepare the message for use in the cipher
+    message = message.replaceAll("j", "i");
+    message = message.replaceAll(" ", "");
+    if (message.length % 2 !== 0) {
+        message += "x";
+    }
+
+    // Split message into two-letter pairs
+    let pairList = [];
+    for (let i = 0; i < message.length; i += 2) {
+        pairList.push(message.substring(i,i+2));
+    }
+
+    // If a pair is the same letter twice, change the second to "x"
+    for (let i = 0; i < pairList.length; i++) {
+        const first = pairList[i][0];
+        const second = pairList[i][1];
+        if (first === second) {
+            pairList[i] = first + "x";
         }
-    </script>
+    }
 
-    <script src="playfairweb.js"></script>
+    // Arrange the letters in the order they will appear in the grid
+    let letters = key;
+    for (let i = 0; i < alphabet.length; i++) {
+        if (!key.includes(alphabet[i])) {
+            letters += alphabet[i];
+        }
+    }
+
+    // Function to create a blank NxN matrix
+    function createBlankMatrix(rows, cols) {
+        const matrix = [];
+        for (let i = 0; i < rows; i++) {
+            matrix.push(new Array(cols).fill(""));
+        }
+        return matrix;
+    }
+
+    // Create a 5x5 blank matrix
+    const matrix = createBlankMatrix(5, 5);
+
+    // Populate the matrix with letters
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            matrix[i][j] = letters[5*i + j];
+        }
+    }
+
+    // Find the index of a letter in a grid
+    function index(letter) {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (letter === matrix[i][j]) {
+                    return {row: i, col: j};
+                }
+            }
+        }
+    }
+
+    function swap(l1, l2) {
+        const r1 = index(l1).row;
+        const r2 = index(l2).row;
+        const c1 = index(l1).col;
+        const c2 = index(l2).col;
+        if (r1 === r2) {
+            return matrix[r1][(((c1+encrypt)%5)+5)%5] + matrix[r2][(((c2+encrypt)%5)+5)%5];
+        }
+        if (c1 === c2) {
+            return matrix[(((r1+encrypt)%5)+5)%5][c1] + matrix[(((r2+encrypt)%5)+5)%5][c2];
+        }
+        else {
+            return matrix[r1][c2] + matrix[r2][c1];
+        }
+    }
+
+    let resultPairList = [];
+    for (let i = 0; i < pairList.length; i++) {
+        const first = pairList[i][0];
+        const second = pairList[i][1];
+        const swapFirstSecond = swap(first, second);
+        resultPairList.push(swapFirstSecond);
+    }
+
+    function finalReturn() {
+    const newMessage = resultPairList.join("");
+    return(newMessage)
+    }
+
+    document.getElementById("outputResult").innerHTML = finalReturn();
+});
+</script>
+
 </body>
 </html>
-
