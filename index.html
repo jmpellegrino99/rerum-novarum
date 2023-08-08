@@ -4,7 +4,7 @@
     <title>Playfair Cipher</title>
     <style>
         form {
-            border: 5px solid #dd5050;
+            border: 5px solid gray;
             padding: 20px;
             width: 500px;
         }
@@ -12,11 +12,46 @@
         body {
             font-family: Verdana;
         }
+
+        h5 {
+            color: maroon;
+        }
+
+        input[type="submit"] {
+            background-color: lightblue;
+            color: black;
+            padding: 10px 20px;
+            border: solid;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: white;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        button {
+            background-color: lightpink;
+            cursor: pointer;
+            border: solid;
+            padding: 10px 10px;
+        }
+
+        #outputResult {
+            background-color: skyblue;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <h2>Playfair Cipher Encoder/Decoder</h2>
+
+<h5>Welcome! Please use the box below to encrypt or decrypt a message using a Playfair cipher:</h5>
 
 <form id="enterValues">
     <label for="encrypt">Enter 1 for encrypt, -1 for decrypt:</label>
@@ -149,5 +184,18 @@ document.getElementById("enterValues").addEventListener("submit", function(event
 });
 </script>
 
+<script>
+    function refresh() {
+        location.reload();
+    }
+</script>
+
+<button id="fresh" onclick=refresh()>Refresh</button>
+
+<foooter>
+    <p>&copy; J. M. Pellegrino, 2023</p>
+</foooter>
+
 </body>
+
 </html>
