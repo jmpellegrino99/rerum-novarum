@@ -3,8 +3,12 @@
 <head>
     <title>Playfair Cipher</title>
     <style>
+        h2 {
+            text-align: center;
+        }
+
         form {
-            border: 5px solid gray;
+            border: 5px solid black;
             padding: 20px;
             width: 500px;
         }
@@ -23,6 +27,10 @@
             padding: 10px 20px;
             border: solid;
             cursor: pointer;
+        }
+
+        input:not([type="submit"]) {
+            background-color: rgb(246, 242, 242);
         }
 
         footer {
@@ -193,7 +201,7 @@ document.getElementById("enterValues").addEventListener("submit", function(event
 <button id="fresh" onclick=refresh()>Refresh</button>
 
 <foooter>
-    <p>&copy; J. M. Pellegrino, 2023</p>
+    <p>&copy; auctor I. M. Peregrinus fuit, anno MMXXIII Domini</p>
 </foooter>
 
 </body>
