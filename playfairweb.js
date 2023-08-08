@@ -1,7 +1,6 @@
-const encrypt = document.getElementById("encrypt").value;
-const key = document.getElementById("key").value;
-let message = document.getElementById("message").value;
-
+const encrypt = 1;
+const key = "death";
+let message = "this is my first playfair cipher";
 const alphabet = "abcdefghiklmnopqrstuvwxyz"; 
 
 // Convert the message to lowercase
@@ -95,3 +94,10 @@ function finalReturn() {
 const newMessage = resultPairList.join("");
 return(newMessage)
 }
+
+console.log(key);
+console.log(matrix);
+console.log(message);
+console.log(pairList);
+console.log(resultPairList);
+console.log(finalReturn());
