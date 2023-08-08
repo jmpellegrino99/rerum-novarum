@@ -2,6 +2,17 @@
 <html>
 <head>
     <title>Playfair Cipher</title>
+    <style>
+        form {
+            border: 5px solid #dd5050;
+            padding: 20px;
+            width: 500px;
+        }
+
+        body {
+            font-family: Verdana;
+        }
+    </style>
 </head>
 <body>
 
@@ -128,7 +139,12 @@ document.getElementById("enterValues").addEventListener("submit", function(event
         location.reload();
     }
     else {
-        document.getElementById("outputResult").innerHTML = finalReturn();
+        if (encrypt === 1) {
+            document.getElementById("outputResult").innerHTML = "The encryption is: " + finalReturn();
+        }
+        if (encrypt === -1) {
+            document.getElementById("outputResult").innerHTML = "The decryption is: " + finalReturn();
+        }
     }
 });
 </script>
