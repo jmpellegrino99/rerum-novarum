@@ -3,6 +3,11 @@
 <head>
     <title>Playfair Cipher</title>
     <style>
+
+        ::selection {
+            background-color: yellow;
+        }
+
         h2 {
             text-align: center;
         }
@@ -15,6 +20,7 @@
 
         body {
             font-family: Verdana;
+            background-color: rgb(231, 248, 223);
         }
 
         h5 {
@@ -52,7 +58,9 @@
         #outputResult {
             background-color: skyblue;
             text-align: center;
+            word-wrap: break-word;
         }
+        
     </style>
 </head>
 <body>
@@ -62,8 +70,8 @@
 <h5>Welcome! Please use the box below to encrypt or decrypt a message using a Playfair cipher:</h5>
 
 <form id="enterValues">
-    <label for="encrypt">Click to encrypt, unclick to decrypt:</label>
-    <input type="checkbox" id="encrypt">
+    <label for="encrypt">Check to encrypt, uncheck to decrypt:</label>
+    <input type="checkbox" id="encrypt" checked>
     <br>
     <label for="key">Enter a 5-letter key:</label>
     <input type="text" id="key" name="key">
@@ -97,12 +105,15 @@ document.getElementById("enterValues").addEventListener("submit", function(event
 
     const alphabet = "abcdefghiklmnopqrstuvwxyz"; 
 
-    // Convert the message to lowercase
-    message = message.toLowerCase();
-
     // Prepare the message for use in the cipher
     message = message.replaceAll("j", "i");
+    message = message.replaceAll(".","");
+    message = message.replaceAll(",","");
+    message = message.replaceAll("-","");
+    message = message.replaceAll(":","");
+    message = message.replaceAll(";","");
     message = message.replaceAll(" ", "");
+    message = message.toLowerCase();
     if (message.length % 2 !== 0) {
         message += "x";
     }
