@@ -100,7 +100,25 @@
 <script>
 document.getElementById("enterValues").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
+    function checkWord(word) {
+    if (word.length !== 5) {
+        return true; // Word is not five letters long
+    }
+    for (let i = 0; i < word.length; i++) {
+        if (word.indexOf(word[i]) !== word.lastIndexOf(word[i])) {
+        return true; // Word has a repeated character
+        }
+    }
+    return false; // Word does not have repeated characters
+    }
+
     var key = document.getElementById("key").value;
+
+    if (checkWord(key)) {
+    alert('Pleasure ensure that the key has five distinct characters. Refreshing the page!');
+    location.reload();
+    } 
+
     var message = document.getElementById("message").value;
 
     const alphabet = "abcdefghiklmnopqrstuvwxyz"; 
