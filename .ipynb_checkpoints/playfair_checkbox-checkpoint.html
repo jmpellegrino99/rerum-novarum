@@ -3,6 +3,11 @@
 <head>
     <title>Playfair Cipher</title>
     <style>
+
+        ::selection {
+            background-color: yellow;
+        }
+
         h2 {
             text-align: center;
         }
@@ -15,6 +20,7 @@
 
         body {
             font-family: Verdana;
+            background-color: rgb(231, 248, 223);
         }
 
         h5 {
@@ -52,7 +58,9 @@
         #outputResult {
             background-color: skyblue;
             text-align: center;
+            word-wrap: break-word;
         }
+        
     </style>
 </head>
 <body>
@@ -62,8 +70,8 @@
 <h5>Welcome! Please use the box below to encrypt or decrypt a message using a Playfair cipher:</h5>
 
 <form id="enterValues">
-    <label for="encrypt">Enter 1 for encrypt, -1 for decrypt:</label>
-    <input type="number" id="encrypt" name="encrypt">
+    <label for="encrypt">Check to encrypt, uncheck to decrypt:</label>
+    <input type="checkbox" id="encrypt" checked>
     <br>
     <label for="key">Enter a 5-letter key:</label>
     <input type="text" id="key" name="key">
@@ -77,20 +85,35 @@
 <p id = "outputResult"></p>
 
 <script>
+    const checkbox = document.getElementById("encrypt");
+    let encrypt = 1
+
+    checkbox.addEventListener("change", function() {
+        if (this.checked) {
+            encrypt = 1
+        } else {
+            encrypt = -1
+        }
+    });
+</script>
+
+<script>
 document.getElementById("enterValues").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
-    var encrypt = parseInt(document.getElementById("encrypt").value, 10);
     var key = document.getElementById("key").value;
     var message = document.getElementById("message").value;
 
     const alphabet = "abcdefghiklmnopqrstuvwxyz"; 
 
-    // Convert the message to lowercase
-    message = message.toLowerCase();
-
     // Prepare the message for use in the cipher
     message = message.replaceAll("j", "i");
+    message = message.replaceAll(".","");
+    message = message.replaceAll(",","");
+    message = message.replaceAll("-","");
+    message = message.replaceAll(":","");
+    message = message.replaceAll(";","");
     message = message.replaceAll(" ", "");
+    message = message.toLowerCase();
     if (message.length % 2 !== 0) {
         message += "x";
     }
