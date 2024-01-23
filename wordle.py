@@ -1,6 +1,13 @@
 import pandas as pd
 import numpy as np
 import re
+import sqlite3
+
+# conn = sqlite3.connect("wordle.db")
+# df.to_sql("df", conn, index=False, if_exists="replace")
+# df_result = pd.read_sql_query(query, conn)
+# conn.commit()
+# conn.close()
 
 df = pd.read_csv("words.csv")
 
