@@ -3,11 +3,7 @@ import numpy as np
 import re
 import sqlite3
 
-# conn = sqlite3.connect("wordle.db")
-# df.to_sql("df", conn, index=False, if_exists="replace")
-# df_result = pd.read_sql_query(query, conn)
-# conn.commit()
-# conn.close()
+conn = sqlite3.connect("wordle.db")
 
 df = pd.read_csv("words.csv")
 
@@ -31,8 +27,8 @@ def avg_matches(test_word):
 # freq_df = pd.DataFrame(data={"word": all_5l_words, "match_rate": frequencies})
 # freq_df.to_csv("freq_df.csv")
 
-# dic = pd.read_csv("freq_df.csv")
-# print(dic)
+dic = pd.read_csv("freq_df.csv")
+dic.to_sql("dic", conn, index=False, if_exists="replace")
 
 #Run to create the average matches dictionary for words that do not overlap with "arose":
 # non_starters = [word for word in all_5l_words if bool(re.match(r"^[^arose]*$", word))]
@@ -44,4 +40,19 @@ def avg_matches(test_word):
 
 non_starter_dic = pd.read_csv("non_starter_freq_df.csv")
 non_starter_dic_sorted = non_starter_dic.sort_values(by="match_rate", ascending=False)
-print(non_starter_dic_sorted)
+
+query = """
+select
+*
+from dic
+where word not like "%a%"
+and word not like "%r%"
+and word not like "%o%"
+and word not like "%s%"
+and word not like "%e%"
+order by match_rate desc
+;
+"""
+
+df_result = pd.read_sql_query(query, conn)
+print(df_result)
