@@ -30,29 +30,18 @@ def avg_matches(test_word):
 dic = pd.read_csv("freq_df.csv")
 dic.to_sql("dic", conn, index=False, if_exists="replace")
 
-#Run to create the average matches dictionary for words that do not overlap with "arose":
-# non_starters = [word for word in all_5l_words if bool(re.match(r"^[^arose]*$", word))]
-# non_starter_frequencies = []
-# for word in non_starters:
-#     non_starter_frequencies.append(avg_matches(word))
-# freq_df = pd.DataFrame(data={"word": non_starters, "match_rate": non_starter_frequencies})
-# freq_df.to_csv("non_starter_freq_df.csv")
-
-non_starter_dic = pd.read_csv("non_starter_freq_df.csv")
-non_starter_dic_sorted = non_starter_dic.sort_values(by="match_rate", ascending=False)
+no_match_arose = [word for word in all_5l_words if re.match(r"^[^arose]*$", word)]
+no_match_arose_dic = pd.DataFrame(data={"word": no_match_arose})
+no_match_arose_dic.to_sql("no_match_arose", conn, index=False, if_exists="replace")
 
 query = """
 select
 *
 from dic
-where word not like "%a%"
-and word not like "%r%"
-and word not like "%o%"
-and word not like "%s%"
-and word not like "%e%"
+where word in (select word from no_match_arose)
 order by match_rate desc
 ;
 """
 
-df_result = pd.read_sql_query(query, conn)
-print(df_result)
+result = pd.read_sql_query(query, conn)
+print(result)
