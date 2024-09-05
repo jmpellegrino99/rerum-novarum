@@ -1,0 +1,21 @@
+# Define the URL of the webpage
+$url = "https://example.com"
+
+# Define the path where the HTML file will be saved
+$outputFile = "C:\path\to\output.html"
+
+# Open the webpage in Microsoft Edge
+Start-Process "msedge" -ArgumentList $url
+
+# Wait a few seconds to ensure the page loads
+Start-Sleep -Seconds 5
+
+# Download the webpage content
+try {
+    $response = Invoke-WebRequest -Uri $url
+    $response.Content | Out-File -FilePath $outputFile -Encoding utf8
+    Write-Output "Webpage content saved to $outputFile"
+} catch {
+    Write-Error "Failed to download the webpage content. $_"
+}
+
