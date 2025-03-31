@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Solver</title>
+    <script defer src="spelling_bee.js"></script>
+</head>
+<body>
+    <h1>Puzzle Solver</h1>
+    <label for="mainLetter">Main Letter:</label>
+    <input type="text" id="mainLetter" maxlength="1">
+    <br>
+    <label for="includeLetters">Include Letters:</label>
+    <input type="text" id="includeLetters">
+    <br>
+    <button onclick="solvePuzzle()">Solve</button>
+    <h2>Filtered Words:</h2>
+    <ul id="wordList"></ul>
+</body>
+</html>
+
