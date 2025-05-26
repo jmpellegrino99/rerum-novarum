@@ -1,0 +1,18 @@
+Q1.: LANGUAGE - A word for a certain type of artistic arrangement does not pertain to a particular specific prophet, though it sounds like it might and is a homonym of a word that does. What is this word?
+Answer: MOSAIC
+
+Q2.: BUS/ECON - In recent years, the pharmaceutical industry has seen a battle in the development of prescription weight-loss drugs, specifically between two long-time archrivals. One has launched semaglutide (under the brand names Ozempic and Wegovy) for type 2 diabetes and obesity, and the other has launched tirzepatide (brand names Mounjaro and Zepbound). Name either of these two companies, the first of which is European, and the second of which is American.
+Answer: NOVO NORDISK, ELI LILLY
+
+Q3.: WORLD HIST - Members of the Christian sect founded by George Fox (and others) in England during the mid-17th century are popularly known by what term, which may have originated from what one must do, per Fox's admonishment, "at the word of the Lord"?
+Answer: QUAKERS
+
+Q4.: GAMES/SPORT - According to Section 6.02 of Major League Baseball's official rules, under "Pitcher Illegal Action", when one or more runners is on base and the pitcher, "while touching his plate, makes any motion naturally associated with his pitch and fails to make such delivery", what violation has occurred?
+Answer: BALK
+
+Q5.: SCIENCE - Internet Protocol version 4 (better known as IPv4), which underpins most network traffic, provides 232unique addresses in a 32-bit address space. These addresses are most often represented in "dot-decimal" notation—i.e., four nonnegative integers separated by three dots, such as127.0.0.1. What is the greatest value any of these four integers can have in IPv4?
+Answer: 255
+
+Q6.: FOOD/DRINK -KriekandFramboiseare among the popular styles of a type of Belgian beer made with malt and uncooked wheat and fermented with wild yeast. By what name is this beer known?
+Answer: LAMBIC
+
